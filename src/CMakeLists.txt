@@ -5,4 +5,4 @@ set(TargetName "Client")
 
 add_executable(${TargetName} ${SRCS})
 
-target_link_libraries(${TargetName} ${LibAutoGen})
+target_link_libraries(${TargetName} ${LibAutoGen} ${LIB_PROTOBUF} -pthread)

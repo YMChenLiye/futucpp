@@ -5,5 +5,6 @@ using namespace std;
 
 int main()
 {
+    Common::PacketID st;
     cout << "hello,world" << endl;
 }
