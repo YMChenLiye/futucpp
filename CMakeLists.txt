@@ -1,0 +1,21 @@
+# CMake 最低版本号要求
+cmake_minimum_required (VERSION 2.8)
+
+# 项目信息
+project (FutuClient C CXX)
+
+# 设置二进制和库文件输出路径
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+
+include("${CMAKE_SOURCE_DIR}/FunctionDefs.cmake")
+# 根据PB生成对应的C++文件, 并编译成AutoGen库
+SetAutoGenVars()
+AddAutoGenProto(${CMAKE_SOURCE_DIR}/proto ProtoGen)
+add_library(${LibAutoGen} STATIC ${ProtoGen})
+include_directories(SYSTEM "${AutoGenOutputDir}")
+
+add_subdirectory(src EXCLUDE_FROM_ALL)
