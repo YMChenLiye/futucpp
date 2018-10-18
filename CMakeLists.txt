@@ -21,4 +21,11 @@ add_library(${LibAutoGen} STATIC ${ProtoGen})
 include_directories(SYSTEM "${AutoGenOutputDir}")
 find_library(LIB_PROTOBUF "libprotobuf.a" "${PROTOBUF_ROOT}/lib" NO_DEFAULT_PATH)
 
+set(TARS_ROOT 3rd/tars/util)
+include_directories(SYSTEM ${TARS_ROOT}/include)
+add_subdirectory(${TARS_ROOT})
+set(LIB_TARSUTIL tarsutil)
+
+set(LIBS ${LibAutoGen} ${LIB_PROTOBUF} -pthread ${LIB_TARSUTIL})
+
 add_subdirectory(src EXCLUDE_FROM_ALL)
